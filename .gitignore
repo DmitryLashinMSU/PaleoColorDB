@@ -6,3 +6,4 @@ app/static/media_archive/
 data.json
 export_json.py
 paleocolor.md
+.vscode/
