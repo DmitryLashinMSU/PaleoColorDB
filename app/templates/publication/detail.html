@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<a href="javascript:history.back()" class="btn btn-sm btn-outline-secondary mb-3">&larr; Назад</a>
+<h2>{{ publication.title }}</h2>
+<p class="text-muted">{{ publication.authors }} ({{ publication.year }})</p>
+
+{% if publication.doi %}
+    {% if publication.doi.startswith('http://') or publication.doi.startswith('https://') %}
+        <a href="{{ publication.doi }}" target="_blank" class="btn btn-primary btn-sm mb-3">Перейти к источнику</a>
+    {% else %}
+        <a href="https://doi.org/{{ publication.doi }}" target="_blank" class="btn btn-primary btn-sm mb-3">Перейти к DOI</a>
+    {% endif %}
+{% endif %}
+
+<div class="abstract-box mt-3">
+    <h6>Абстракт:</h6>
+    <p class="mb-0">{{ publication.abstract }}</p>
+</div>
+<h5 class="mt-4">Упоминаемые виды:</h5>
+<ul>
+    {% for taxon in publication.taxa %}
+    <li><a href="{{ url_for('main.taxon_detail', id=taxon.id) }}">{{ taxon.name }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

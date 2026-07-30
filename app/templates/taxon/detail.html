@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+<a href="{{ url_for('main.index') }}" class="btn btn-sm btn-outline-secondary mb-3">&larr; На главную</a>
+
+<div class="row">
+    <div class="col-md-8">
+        <h1 class="font-italic mb-0">{{ taxon.name }}</h1>
+        <hr>
+        <p><span class="metadata-label">Время:</span> {{ taxon.geologic_time }}</p>
+        <p><span class="metadata-label">Регион:</span> {{ taxon.location }}</p>
+        <p><span class="metadata-label">Формация:</span> {{ taxon.fossil_site }}</p>
+        
+        <h4 class="mt-4">Данные об окраске</h4>
+        <p>{{ taxon.coloration_data }}</p>
+        <p><span class="metadata-label">Метод:</span> {{ taxon.method_used }}</p>
+        
+        <h4 class="mt-4">Связанные публикации</h4>
+        <ul>
+            {% for pub in taxon.publications %}
+            <li class="mb-2">
+                <a href="{{ url_for('main.publication_detail', id=pub.id) }}">{{ pub.authors }} ({{ pub.year }})</a>
+                {% if pub.description %}
+                    <br><span class="text-muted small">{{ pub.description }}</span>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+        
+        {% if pdfs %}
+        <h4 class="mt-4">Документы и файлы</h4>
+        <ul class="list-unstyled">
+            {% for pdf in pdfs %}
+            <li class="mb-3">
+                <a href="{{ url_for('static', filename='media_archive/' + pdf.file_path) }}" target="_blank">
+                    {{ pdf.file_path.split('/')[-1] }} (PDF)
+                </a>
+                {% if pdf.description %}
+                    <br><span class="text-muted small">{{ pdf.description }}</span>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+    <div class="col-md-4">
+        
+        <!-- Блок реконструкций -->
+        {% if reconstructions %}
+            <h6 class="text-center metadata-label mt-2">Реконструкции</h6>
+            {% for rec in reconstructions %}
+                <div class="mb-3 text-center">
+                    <img src="{{ url_for('static', filename='media_archive/' + rec.file_path) }}" class="img-paleo mb-1" data-bs-toggle="modal" data-bs-target="#imageModal" style="cursor: pointer;" title="Нажмите для увеличения">
+                    {% if rec.description %}
+                        <small class="text-muted">{{ rec.description }}</small>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        <!-- Блок окаменелостей -->
+        {% if fossils %}
+            <h6 class="text-center metadata-label mt-4">Окаменелости</h6>
+            {% for fossil in fossils %}
+                <div class="mb-3 text-center">
+                    <img src="{{ url_for('static', filename='media_archive/' + fossil.file_path) }}" class="img-paleo mb-1" data-bs-toggle="modal" data-bs-target="#imageModal" style="cursor: pointer;" title="Нажмите для увеличения">
+                    {% if fossil.description %}
+                        <small class="text-muted">{{ fossil.description }}</small>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        <!-- Блок сравнения размеров -->
+        {% if sizes %}
+            <h6 class="text-center metadata-label mt-4">Сравнение размеров</h6>
+            {% for size in sizes %}
+                <div class="mb-3 text-center">
+                    <img src="{{ url_for('static', filename='media_archive/' + size.file_path) }}" class="img-paleo mb-1" data-bs-toggle="modal" data-bs-target="#imageModal" style="cursor: pointer;" title="Нажмите для увеличения">
+                    {% if size.description %}
+                        <small class="text-muted">{{ size.description }}</small>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

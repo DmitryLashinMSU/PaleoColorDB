@@ -1,0 +1,22 @@
+body {
+    font-family: 'Merriweather', serif;
+    background-color: #fdfdfd;
+    color: #2c3e50;
+}
+h1, h2, h3, h4, h5, .navbar-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+.navbar { background-color: #1a252f !important; }
+.card { border: 1px solid #ecf0f1; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+.metadata-label { font-weight: bold; color: #7f8c8d; font-family: 'Montserrat', sans-serif; font-size: 0.9em; text-transform: uppercase; }
+.abstract-box { background-color: #ecf0f1; padding: 20px; border-left: 5px solid #e74c3c; font-style: italic; }
+.img-paleo { width: 100%; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 15px;}
+
+@media (min-width: 768px) {
+    .sticky-search {
+        position: sticky;
+        top: 85px;
+        z-index: 1000;
+    }
+}

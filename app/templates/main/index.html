@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-3">
+        <div class="card p-3 mb-4 sticky-search">
+            <h5 class="mb-3">Поиск по базе</h5>
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                
+                <div class="mb-2">
+                    {{ form.name.label(class="form-label small") }}
+                    {{ form.name(class="form-control form-control-sm") }}
+                </div>
+                
+                <div class="mb-2">
+                    {{ form.geologic_time.label(class="form-label small") }}
+                    {{ form.geologic_time(class="form-control form-control-sm") }}
+                </div>
+                
+                <div class="mb-2">
+                    {{ form.country.label(class="form-label small") }}
+                    {{ form.country(class="form-control form-control-sm") }}
+                </div>
+                
+                <div class="mb-3">
+                    {{ form.sort_by.label(class="form-label small") }}
+                    {{ form.sort_by(class="form-select form-select-sm") }}
+                </div>
+                
+                {{ form.submit(class="btn btn-dark w-100 btn-sm") }}
+            </form>
+        </div>
+    </div>
+    
+    <div class="col-md-9">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for taxon in taxa %}
+        <div class="col">
+            <div class="card h-100 p-3 d-flex flex-column">
+                
+                {% set first_recon = taxon.media_files | selectattr("media_type", "equalto", "reconstruction") | first %}
+                
+                {% if first_recon %}
+                    <a href="{{ url_for('main.taxon_detail', id=taxon.id) }}">
+                        <img src="{{ url_for('static', filename='media_archive/' + first_recon.file_path) }}" 
+                             class="card-img-top mb-3 rounded" 
+                             style="height: 200px; object-fit: cover; width: 100%;" 
+                             alt="Реконструкция {{ taxon.name }}">
+                    </a>
+                {% else %}
+                    <div class="text-muted d-flex align-items-center justify-content-center mb-3 rounded" 
+                         style="height: 200px; background-color: #e2e8f0;">
+                        <!-- <span class="small text-uppercase fw-bold" style="letter-spacing: 1px; font-size: 0.8rem;">Нет реконструкции</span> -->
+                    </div>
+                {% endif %}
+
+                <div class="flex-grow-1">
+                    <h5 class="card-title font-italic">
+                        <a href="{{ url_for('main.taxon_detail', id=taxon.id) }}" class="text-decoration-none text-dark">{{ taxon.name }}</a>
+                    </h5>
+                    
+                    <p class="mb-1 small text-muted">{{ taxon.geologic_time }} | {{ taxon.location }}</p>
+                    <p class="mt-2 small mb-0">{{ taxon.coloration_data[:120] }}...</p>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

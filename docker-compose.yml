@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    container_name: paleocolor_db
+    environment:
+      POSTGRES_USER: paleo_admin
+      POSTGRES_PASSWORD: paleo_secure_pass
+      POSTGRES_DB: paleocolor_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      # Скрипт автоматического наполнения базы данных при ее первом запуске:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always
+
+  web:
+    build: .
+    container_name: paleocolor_web
+    command: ./entrypoint.sh
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    restart: always
+
+volumes:
+  postgres_data:

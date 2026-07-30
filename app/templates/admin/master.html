@@ -1,0 +1,17 @@
+{% extends 'admin/base.html' %}
+
+{% block brand %}
+<a class="navbar-brand" href="/">PaleoColor DB</a>
+{% endblock %}
+
+{% block head_tail %}
+{{ super() }}
+<style>
+    .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+</style>
+{% endblock %}

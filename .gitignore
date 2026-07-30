@@ -1,0 +1,8 @@
+env/
+__pycache__/
+*.pyc
+app/static/media_archive/
+.env
+data.json
+export_json.py
+paleocolor.md
