@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict nQtaJW0Fr5DcCqLdvHYctVjr34WZEkbeGKFiGJDz4WS6GNcwilfiwYQvhaXsc1C
+\restrict drAhswbp0Pbe2dOSdh5A7fWwfewf1phVXyX40KE5UDkg7wP4RQYh396jnrs4kiG
 
 -- Dumped from database version 15.18 (Debian 15.18-1.pgdg13+1)
 -- Dumped by pg_dump version 15.18 (Debian 15.18-1.pgdg13+1)
@@ -405,7 +405,6 @@ COPY public.media (id, file_path, media_type, description) FROM stdin;
 180	Iteravis/Iteravis_r.png	reconstruction	Iteravis huchzermeyeri в представлении художника.
 181	Iteravis/Iteravis_f.jpg	fossil_photo	Ископаемый образец Iteravis huchzermeyeri.
 182	Iteravis/Wang_et_al_2018.pdf	pdf_article	Статья, содержащая данные об окраске Iteravis huchzermeyeri.
-183	Shangyang/Shangyang_r.png	reconstruction	Голова Shanyang в представлении художника.
 184	Shangyang/Shangyang_f.png	fossil_photo	Образец IVPP V26899.
 185	Shangyang/Li_et_al_2025.pdf	pdf_article	Исследование окраски хохолка Shangyang.
 123	Eggs/Wiemann_et_al_2015.pdf	pdf_article	Статья с описанием цвета скорлупы яиц Heyuannia huangi.
@@ -423,6 +422,7 @@ COPY public.media (id, file_path, media_type, description) FROM stdin;
 198	Ammonoid/Mironenko_2015.pdf	pdf_article	Публикация Александра Мироненко о прижизненной окраске аммонитов.
 195	Enantiornithes/Enantiornithes_f3.png	fossil_photo	Образец HPG-15-1, его реконструкция по результатам компьютерной томографии и схематическое изображение из Xing et al. (2017). Масштабная линейка 10 мм.
 131	Trilobites/Trilobites_f3.png	fossil_photo	Фотография экземпляра Illaenus из Санкт-Петербурга с темными радиальными полосами на пигидии.
+183	Shangyang/Shangyang_r.png	reconstruction	Голова Shangyang в представлении художника.
 \.
 
 
@@ -1012,5 +1012,5 @@ ALTER TABLE ONLY public.taxon_publication
 -- PostgreSQL database dump complete
 --
 
-\unrestrict nQtaJW0Fr5DcCqLdvHYctVjr34WZEkbeGKFiGJDz4WS6GNcwilfiwYQvhaXsc1C
+\unrestrict drAhswbp0Pbe2dOSdh5A7fWwfewf1phVXyX40KE5UDkg7wP4RQYh396jnrs4kiG
 
