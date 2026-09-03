@@ -5,7 +5,7 @@ import zipfile
 FILE_ID = '16btYr1bv0-ZNAn47-5iBESweTR1LCv77'
 URL = f'https://drive.google.com/uc?id={FILE_ID}'
 OUTPUT_ZIP = 'media_archive.zip'
-TARGET_DIR = 'app/static/media_archive'
+TARGET_DIR = 'app/static'
 
 def main():
     print("Загрузка архива...")
